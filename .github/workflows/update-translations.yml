@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'wpilibsuite/frc-docs-translations'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: 'true'
@@ -24,7 +24,7 @@ jobs:
           curl -o- https://raw.githubusercontent.com/transifex/cli/v1.4.1/install.sh | bash
           mv tx /usr/local/bin/tx
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
       - name: Update wheel
@@ -45,7 +45,7 @@ jobs:
         env:
           TX_TOKEN: ${{ secrets.TX_TOKEN }}
       - name: Create Commit & Push
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update Translations from Transifex"
           commit_user_name: GitHub
